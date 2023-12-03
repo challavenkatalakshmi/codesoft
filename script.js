@@ -1,22 +1,30 @@
-let menu = document.querySelector('nav');
-let menuBtn = document.querySelector('.menu-btn');
-let closeBtn = document.querySelector('.close-btn');
+const header = document.querySelector("header");
 
-menuBtn.addEventListener('click',function(){
-  menu.classList.add('active');
-})
-closeBtn.addEventListener('click',function(){
-  menu.classList.remove('active');
-})
-
-const bodyEl = document.querySelector("body");
-const toggleEl = document.querySelector(".fa-moon");
-
-toggleEl.addEventListener("click", () => {
-  bodyEl.classList.toggle("dark");
-  if (bodyEl.classList.contains("dark")) {
-    toggleEl.classList.replace("fa-moon", "fa-sun");
-  } else {
-    toggleEl.classList.replace("fa-sun", "fa-moon");
-  }
+window.addEventListener ("scroll", function() {
+	header.classList.toggle ("sticky", window.scrollY > 0);
 });
+
+let menu = document.querySelector('#menu-icon');
+let navlist = document.querySelector('.navlist');
+
+menu.onclick = () => {
+	menu.classList.toggle('bx-x');
+	navlist.classList.toggle('active');
+};
+
+window.onscroll = () => {
+	menu.classList.remove('bx-x');
+	navlist.classList.remove('active');
+};
+
+const sr = ScrollReveal ({
+	distance: '45px',
+	duration: 2700,
+	reset: true
+})
+
+sr.reveal('.home-text',{delay:350, origin:'left'})
+sr.reveal('.home-img',{delay:350, origin:'right'})
+
+sr.reveal('.sub-service,.about,.portfolio,.service,.cta,.contact',{delay:200, origin:'bottom'})
+
